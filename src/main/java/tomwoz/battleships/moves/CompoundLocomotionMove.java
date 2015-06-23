@@ -42,10 +42,10 @@ public class CompoundLocomotionMove implements IMoveVisitor {
 
     @Override
     public void executeMove(IBoard board) {
-
+        //Rememeber to check if the ship is alive
     }
 
-    private enum Instruction {
+    enum Instruction {
         MOVE_FORWARD('M'),
         TURN_RIGHT('R'),
         TURN_LEFT('L');
@@ -67,4 +67,23 @@ public class CompoundLocomotionMove implements IMoveVisitor {
         }
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        CompoundLocomotionMove that = (CompoundLocomotionMove) o;
+
+        if (startingCoords != null ? !startingCoords.equals(that.startingCoords) : that.startingCoords != null)
+            return false;
+        return !(instructions != null ? !instructions.equals(that.instructions) : that.instructions != null);
+
+    }
+
+    @Override
+    public int hashCode() {
+        int result = startingCoords != null ? startingCoords.hashCode() : 0;
+        result = 31 * result + (instructions != null ? instructions.hashCode() : 0);
+        return result;
+    }
 }
