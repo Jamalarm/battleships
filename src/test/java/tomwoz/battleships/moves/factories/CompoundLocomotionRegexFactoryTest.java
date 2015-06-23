@@ -38,5 +38,7 @@ public class CompoundLocomotionRegexFactoryTest {
         final CompoundLocomotionMove generatedMove2 = new CompoundLocomotionMove(coords2, "MMMMMMMMMMM");
 
         assertEquals(generatedMove2, factory.fromString("(10000, 3000) MMMMMMMMMMM"));
+
+        assertNull(factory.fromString("sfdemesodfmawld"));
     }
 }
