@@ -7,7 +7,7 @@ public enum Direction {
     NORTH('N') {
         @Override
         public Coords moveForward(Coords coords) {
-            return null;
+            return new Coords(coords.getX(), coords.getY() + 1);
         }
 
         @Override
@@ -25,7 +25,7 @@ public enum Direction {
     SOUTH('S') {
         @Override
         public Coords moveForward(Coords coords) {
-            return null;
+            return new Coords(coords.getX(), coords.getY() - 1);
         }
 
         @Override
@@ -43,7 +43,7 @@ public enum Direction {
     EAST('E') {
         @Override
         public Coords moveForward(Coords coords) {
-            return null;
+            return new Coords(coords.getX() + 1, coords.getY());
         }
 
         @Override
@@ -61,7 +61,7 @@ public enum Direction {
     WEST('W') {
         @Override
         public Coords moveForward(Coords coords) {
-            return null;
+            return new Coords(coords.getX() - 1, coords.getY());
         }
 
         @Override
@@ -81,12 +81,6 @@ public enum Direction {
         this.shortCode = shortCode;
     }
 
-    public abstract Coords moveForward(Coords coords);
-
-    public abstract Direction turnRight();
-
-    public abstract Direction turnLeft();
-
     public static Direction fromShortCode(char shortCode) {
         for (Direction direction : values()) {
             if (direction.shortCode == shortCode) {
@@ -96,5 +90,11 @@ public enum Direction {
 
         return null;
     }
+
+    public abstract Coords moveForward(Coords coords);
+
+    public abstract Direction turnRight();
+
+    public abstract Direction turnLeft();
 
 }
