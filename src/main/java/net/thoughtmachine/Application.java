@@ -1,27 +1,18 @@
 package net.thoughtmachine;
 
+import tomwoz.battleships.game.GameController;
+import tomwoz.battleships.game.GameControllerFactory;
+import tomwoz.battleships.writers.GameStateFileWriter;
+
 import java.io.*;
 
 public class Application {
 
-    private static final String input = "/input.txt";
+    public static void main(String[] args) throws IOException {
+        final GameController controller = GameControllerFactory.getFileBasedTestInstance("src/test/resources/testStateInputFiles/testState1.txt");
 
-    public static void main(String... args) {
-        Application app = new Application();
-        app.loadInput();
-    }
+        controller.runGame();
 
-    public void loadInput() {
-        InputStream is = getClass().getResourceAsStream(input);
-        BufferedReader reader = new BufferedReader(new InputStreamReader(is));
-
-        try {
-            String line;
-            while ((line = reader.readLine()) != null) {
-                System.out.println(line);
-            }
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
+        controller.writeGameState(new GameStateFileWriter(new FileWriter("target/testout.txt")));
     }
 }

@@ -48,4 +48,9 @@ public class Ship {
         result = 31 * result + (sunk ? 1 : 0);
         return result;
     }
+
+    @Override
+    public String toString() {
+        return "Facing " + orientation.name() + ", sunk=" + sunk;
+    }
 }

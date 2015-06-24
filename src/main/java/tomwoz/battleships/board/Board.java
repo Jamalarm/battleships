@@ -80,4 +80,30 @@ public class Board implements IBoard {
     public int hashCode() {
         return shipGrid != null ? Arrays.deepHashCode(shipGrid) : 0;
     }
+
+    @Override
+    public String toString() {
+        final StringBuilder builder = new StringBuilder();
+
+        for (int x = 0; x < shipGrid.length; x++) {
+            for (int y = 0; y < shipGrid[x].length; y++) {
+                final Ship ship = shipGrid[x][y];
+                if (ship != null) {
+                    builder.append('(')
+                            .append(x)
+                            .append(", ")
+                            .append(y)
+                            .append(", ")
+                            .append(ship.getOrientation().getShortCode())
+                            .append(")");
+                    if (ship.isSunk()) {
+                        builder.append(" SUNK");
+                    }
+                    builder.append("\n");
+                }
+            }
+        }
+
+        return builder.toString();
+    }
 }

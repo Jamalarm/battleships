@@ -81,6 +81,10 @@ public enum Orientation {
         this.shortCode = shortCode;
     }
 
+    public char getShortCode() {
+        return shortCode;
+    }
+
     public static Orientation fromShortCode(char shortCode) {
         for (Orientation orientation : values()) {
             if (orientation.shortCode == shortCode) {

@@ -2,6 +2,7 @@ package tomwoz.battleships.game;
 
 import tomwoz.battleships.api.IActionVisitor;
 import tomwoz.battleships.api.IBoard;
+import tomwoz.battleships.api.IGameStateWriter;
 import tomwoz.battleships.api.input.IActionInputStream;
 import tomwoz.battleships.api.input.IBoardStateProvider;
 import tomwoz.battleships.board.Board;
@@ -31,6 +32,18 @@ public final class GameController {
         } finally {
             try {
                 actionInputStream.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+    public void writeGameState(IGameStateWriter writer) {
+        try {
+            writer.writeGameState(board);
+        } finally {
+            try {
+                writer.close();
             } catch (IOException e) {
                 e.printStackTrace();
             }
