@@ -9,6 +9,9 @@ import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+/**
+ * Produces SinkShipAction objects from Regex Input
+ */
 public class SinkShipActionRegexFactory implements IRegexActionVisitorFactory {
 
     private static final Pattern PATTERN = Pattern.compile("^\\((\\d+)\\,\\s(\\d+)\\)\\s*$");

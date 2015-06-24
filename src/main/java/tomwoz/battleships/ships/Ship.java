@@ -1,5 +1,9 @@
 package tomwoz.battleships.ships;
 
+/**
+ * Mutable object representing a ship. The ship currently only has knowledge of two things, where it's facing and
+ * whether or not it's been sunk
+ */
 public class Ship {
 
     private Orientation orientation;

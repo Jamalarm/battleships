@@ -2,6 +2,10 @@ package tomwoz.battleships.ships;
 
 import tomwoz.battleships.board.Coords;
 
+/**
+ * Enum representing the main compass points, the relationships between them in terms of turning, and the effect
+ * of moving one step forward in that direction
+ */
 public enum Orientation {
 
     NORTH('N') {

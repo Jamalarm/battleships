@@ -1,5 +1,8 @@
 package tomwoz.battleships.board;
 
+/**
+ * Immutable convenience class representing a Tuple of Cartesian coordinates
+ */
 public final class Coords {
 
     private final int x;

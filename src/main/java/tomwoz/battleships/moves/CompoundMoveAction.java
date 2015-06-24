@@ -11,6 +11,16 @@ import tomwoz.battleships.ships.Ship;
 
 import java.util.List;
 
+/**
+ * A IActionVisitor that will take a startingCoordinate, attempt to find a ship there, then apply a series of translations
+ * to it:
+ *
+ * M - Move forward one unit
+ * L - Turn Left
+ * R - Turn Right
+ *
+ * If the set of moves turn out to be valid, then the Ships location and orientation will be updated
+ */
 public class CompoundMoveAction implements IActionVisitor {
 
     private final Coords startingCoords;
@@ -31,6 +41,7 @@ public class CompoundMoveAction implements IActionVisitor {
                 Orientation orientation = ship.getOrientation();
                 Coords newPosition = startingCoords;
 
+                //Step through each instruction and apply it
                 for (Instruction moveInstruction : moveInstructions) {
 
                     switch (moveInstruction) {
@@ -47,8 +58,10 @@ public class CompoundMoveAction implements IActionVisitor {
 
                 }
 
+                //This call will throw an error if we're making a invalid move
                 board.translateShipLocation(startingCoords, newPosition);
-                ship.setOrientation(orientation); //Must call this second, as the board checking logic needs to execute first
+                //Must call this second, as the board checking logic needs to execute first
+                ship.setOrientation(orientation);
             } else {
                 System.out.println("Compound Move Action failed as the ship is already sunk! It can't move!");
             }

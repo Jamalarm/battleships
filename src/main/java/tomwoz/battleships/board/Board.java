@@ -8,16 +8,23 @@ import tomwoz.battleships.ships.Ship;
 import java.util.Arrays;
 import java.util.Map;
 
+/**
+ * Mutable object representing a grid of N size with a maximum of N^2 ships contained within.
+ * This class handles all logic regarding valid actions that may be made, and will throw a variety of exceptiosn if you
+ * attempt to, for example, move a ship off the board, or move a ship onto another ship.
+ */
 public class Board {
 
     private final Ship[][] shipGrid;
 
     public Board(int size, Map<Coords, Ship> ships) {
-        shipGrid = new Ship[size][];
+        //Build empty array representing board
+        shipGrid =new Ship[size][];
         for (int i = 0; i < size; i++) {
             shipGrid[i] = new Ship[size];
         }
 
+        //Go through and add each ship, or throw an exception if someone is trying to add a ship out of bounds
         for (Map.Entry<Coords, Ship> ship : ships.entrySet()) {
             final Coords coords = ship.getKey();
             final int x = coords.getX();
@@ -43,6 +50,7 @@ public class Board {
     }
 
     public void translateShipLocation(Coords oldCoords, Coords newCoords) throws NoShipException, ActionOutOfBoundsException, ShipCollisionException {
+        //Don't need to check validity of oldCoords as this is all handled in getShip()
         final Ship ship = getShip(oldCoords);
 
         final int x = newCoords.getX();

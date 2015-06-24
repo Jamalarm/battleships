@@ -12,8 +12,19 @@ import java.io.Reader;
 import java.util.LinkedList;
 import java.util.List;
 
+/**
+ * Basic Inversion of Control style dependency injection class. This could obviously be implemented in Spring if
+ * neccessary but that seemed a bit like overkill for the test :)
+ */
 public class GameControllerFactory {
 
+    /**
+     * Returns a basic file based GameController object
+     * @param filePath The file location containing both the input state on the first two lines, together with 1 or more
+     *                 action lines to be executed
+     * @return A GameController object representing the initial state as supplied by the file
+     * @throws FileNotFoundException If the file does not exist
+     */
     public static GameController getFileBasedTestInstance(String filePath) throws FileNotFoundException {
 
         Reader fileReader = new FileReader(filePath);

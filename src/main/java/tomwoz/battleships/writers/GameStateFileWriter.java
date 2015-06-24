@@ -7,6 +7,9 @@ import java.io.BufferedWriter;
 import java.io.IOException;
 import java.io.Writer;
 
+/**
+ * Basic IGameStateWriter implementation that simply dumps the whole .toString() method of board to a file
+ */
 public class GameStateFileWriter implements IGameStateWriter {
 
     private final BufferedWriter writer;

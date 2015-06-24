@@ -7,6 +7,9 @@ import tomwoz.battleships.exceptions.ActionOutOfBoundsException;
 import tomwoz.battleships.exceptions.NoShipException;
 import tomwoz.battleships.ships.Ship;
 
+/**
+ * Simple action that will attempt to sink a ship at a supplied location. If there is no ship there, then nothing happens
+ */
 public class SinkShipAction implements IActionVisitor {
 
     private final Coords target;

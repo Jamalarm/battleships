@@ -18,6 +18,13 @@ import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+/**
+ * Test implementation of the IActionInputStream, IBoardStateProvider. This implements both interfaces as, in the test
+ * brief, both the initial state and actions will be in a single file.
+ *
+ * This class makes heavy use of regular expressions. The initial state is parsed during the construction of the object
+ * the actions are not parsed until they are requested via the GetNextAction operation
+ */
 public class UnifiedTextBasedGameInputStream implements IActionInputStream, IBoardStateProvider {
 
     private static Pattern BOARD_SIZE_REGEX = Pattern.compile("^\\s*(\\d+)\\s*$");
@@ -42,10 +49,12 @@ public class UnifiedTextBasedGameInputStream implements IActionInputStream, IBoa
     private int parseBoardSize() {
 
         try {
+            //Check if this line is appropriately formatted for board size
             final String line = this.reader.readLine();
             final Matcher matcher = BOARD_SIZE_REGEX.matcher(line);
 
             if (matcher.matches()) {
+                //Get the board size and return
                 return Integer.parseInt(matcher.group(1));
             } else {
                 throw new IllegalStateException(String.format("Board size line is malformed! \"%s\"", line));
@@ -67,6 +76,7 @@ public class UnifiedTextBasedGameInputStream implements IActionInputStream, IBoa
                 matcher.reset();
 
                 while (matcher.find()) {
+                    //Submatcher is used to pick out the individual values from a individual ship representation (x, y, orientation) etc
                     final String shipRepresentation = matcher.group(1);
                     final Matcher subMatcher = SHIP_DELIMITATION_REGEX.matcher(shipRepresentation);
 

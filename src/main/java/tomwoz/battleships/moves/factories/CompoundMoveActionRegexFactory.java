@@ -13,6 +13,9 @@ import java.util.regex.Pattern;
 
 import static tomwoz.battleships.moves.CompoundMoveAction.*;
 
+/**
+ * Produces CompoundMoveAction objects from Regex Input
+ */
 public class CompoundMoveActionRegexFactory implements IRegexActionVisitorFactory {
 
     private static final Pattern PATTERN = Pattern.compile("^\\((\\d+)\\,\\s(\\d+)\\)\\s*([MRL]+)\\s*$");
@@ -43,7 +46,6 @@ public class CompoundMoveActionRegexFactory implements IRegexActionVisitorFactor
     }
 
     private List<Instruction> parseInstructions(String instructionStr) {
-        //TODO Move this logic into the Factory
         final LinkedList<Instruction> parsedInstructions = new LinkedList<Instruction>();
 
         for (int i = 0; i < instructionStr.length(); i++) {
