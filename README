@@ -1,6 +1,20 @@
+Hi guys,
 
+Thanks for asking me to do the test. It was actually pretty fun :)
+
+I've tried to make the implemntation as extensible as possible. So, you can easily:
+
+- Add new types of actions by Implementing IActionVisitor
+- Add new types of inputs and outputs by implementing and wiring in IActionInputStream, IBoardStateProvider and IGameStateWriter
+
+The full integration tests can be found in "ApplicationTest" and some short usage instructions can be found in "Application"
+Thought I'd reuse the classes that were in the original bundle :)
 
 Notes:
 
 * I preface all my interfaces with "I" because that's what my current team does - this is more of a force of habit than
 a deeply held belief :)
+* I'm not super happy with some of the mutability of the objects in my implementation. I think given more time I would
+make Ship immutable, and implement some defensive copying elsewhere in the program. As it stands someone could implement
+an evil IActionVisitor that could maintain references to some of the internal objects and mess with the state. Which just
+wouldn't be very nice
