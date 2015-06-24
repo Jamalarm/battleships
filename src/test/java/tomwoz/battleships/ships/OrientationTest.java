@@ -4,9 +4,9 @@ import org.junit.Test;
 import tomwoz.battleships.board.Coords;
 
 import static org.junit.Assert.*;
-import static tomwoz.battleships.ships.Direction.*;
+import static tomwoz.battleships.ships.Orientation.*;
 
-public class DirectionTest {
+public class OrientationTest {
 
     @Test
     public void testFromShortCode() throws Exception {

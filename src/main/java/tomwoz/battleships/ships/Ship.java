@@ -2,24 +2,24 @@ package tomwoz.battleships.ships;
 
 public class Ship {
 
-    private Direction direction;
+    private Orientation orientation;
     private boolean sunk;
 
-    public Ship(Direction direction, boolean sunk) {
-        this.direction = direction;
+    public Ship(Orientation orientation, boolean sunk) {
+        this.orientation = orientation;
         this.sunk = sunk;
     }
 
-    public Ship(Direction direction) {
-        this(direction, false);
+    public Ship(Orientation orientation) {
+        this(orientation, false);
     }
 
-    public Direction getDirection() {
-        return direction;
+    public Orientation getOrientation() {
+        return orientation;
     }
 
-    public void setDirection(Direction direction) {
-        this.direction = direction;
+    public void setOrientation(Orientation orientation) {
+        this.orientation = orientation;
     }
 
     public boolean isSunk() {

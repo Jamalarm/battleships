@@ -2,7 +2,7 @@ package tomwoz.battleships.ships;
 
 import tomwoz.battleships.board.Coords;
 
-public enum Direction {
+public enum Orientation {
 
     NORTH('N') {
         @Override
@@ -11,12 +11,12 @@ public enum Direction {
         }
 
         @Override
-        public Direction turnRight() {
+        public Orientation turnRight() {
             return EAST;
         }
 
         @Override
-        public Direction turnLeft() {
+        public Orientation turnLeft() {
             return WEST;
         }
     },
@@ -29,12 +29,12 @@ public enum Direction {
         }
 
         @Override
-        public Direction turnRight() {
+        public Orientation turnRight() {
             return WEST;
         }
 
         @Override
-        public Direction turnLeft() {
+        public Orientation turnLeft() {
             return EAST;
         }
     },
@@ -47,12 +47,12 @@ public enum Direction {
         }
 
         @Override
-        public Direction turnRight() {
+        public Orientation turnRight() {
             return SOUTH;
         }
 
         @Override
-        public Direction turnLeft() {
+        public Orientation turnLeft() {
             return NORTH;
         }
     },
@@ -65,26 +65,26 @@ public enum Direction {
         }
 
         @Override
-        public Direction turnRight() {
+        public Orientation turnRight() {
             return NORTH;
         }
 
         @Override
-        public Direction turnLeft() {
+        public Orientation turnLeft() {
             return SOUTH;
         }
     };
 
     private final char shortCode;
 
-    Direction(char shortCode) {
+    Orientation(char shortCode) {
         this.shortCode = shortCode;
     }
 
-    public static Direction fromShortCode(char shortCode) {
-        for (Direction direction : values()) {
-            if (direction.shortCode == shortCode) {
-                return direction;
+    public static Orientation fromShortCode(char shortCode) {
+        for (Orientation orientation : values()) {
+            if (orientation.shortCode == shortCode) {
+                return orientation;
             }
         }
 
@@ -93,8 +93,8 @@ public enum Direction {
 
     public abstract Coords moveForward(Coords coords);
 
-    public abstract Direction turnRight();
+    public abstract Orientation turnRight();
 
-    public abstract Direction turnLeft();
+    public abstract Orientation turnLeft();
 
 }

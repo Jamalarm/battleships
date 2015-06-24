@@ -3,6 +3,8 @@ package tomwoz.battleships.moves;
 import tomwoz.battleships.api.IBoard;
 import tomwoz.battleships.api.IActionVisitor;
 import tomwoz.battleships.board.Coords;
+import tomwoz.battleships.ships.Orientation;
+import tomwoz.battleships.ships.Ship;
 
 import java.util.List;
 
@@ -18,7 +20,13 @@ public class CompoundMoveAction implements IActionVisitor {
 
     @Override
     public void executeAction(IBoard board) {
-        //Rememeber to check if the ship is alive
+
+        final Ship ship = board.getShip(startingCoords);
+
+        if (ship != null && !ship.isSunk()) {
+            final Orientation orientation = ship.getOrientation();
+        }
+
     }
 
     public enum Instruction {
