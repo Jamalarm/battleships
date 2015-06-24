@@ -14,7 +14,7 @@ import java.util.List;
 
 /**
  * Basic Inversion of Control style dependency injection class. This could obviously be implemented in Spring if
- * neccessary but that seemed a bit like overkill for the test :)
+ * necessary but that seemed a bit like overkill for the test :)
  */
 public class GameControllerFactory {
 

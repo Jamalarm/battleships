@@ -3,7 +3,6 @@ package tomwoz.battleships.inputStreams;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
-import org.mockito.Mockito;
 import tomwoz.battleships.api.input.IActionInputStream;
 import tomwoz.battleships.api.input.IBoardStateProvider;
 import tomwoz.battleships.board.Coords;
@@ -22,7 +21,7 @@ import static org.mockito.Mockito.*;
 public class UnifiedTextBasedGameInputStreamTest {
 
     @Rule
-    public ExpectedException expectedException = ExpectedException.none();
+    public final ExpectedException expectedException = ExpectedException.none();
 
     @Test
     public void testReadNextAction() throws Exception {

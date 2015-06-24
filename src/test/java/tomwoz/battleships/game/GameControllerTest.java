@@ -1,20 +1,17 @@
 package tomwoz.battleships.game;
 
 import org.junit.Test;
-import org.mockito.Mockito;
 import tomwoz.battleships.api.IActionVisitor;
 import tomwoz.battleships.api.input.IActionInputStream;
 import tomwoz.battleships.api.input.IBoardStateProvider;
 import tomwoz.battleships.board.Board;
 import tomwoz.battleships.board.Coords;
-import tomwoz.battleships.exceptions.NoShipException;
 import tomwoz.battleships.ships.Orientation;
 import tomwoz.battleships.ships.Ship;
 
 import java.util.Collections;
 import java.util.Map;
 
-import static org.junit.Assert.*;
 import static org.mockito.Mockito.*;
 
 public class GameControllerTest {

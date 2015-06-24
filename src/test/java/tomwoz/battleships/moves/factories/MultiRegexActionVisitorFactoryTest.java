@@ -1,11 +1,9 @@
 package tomwoz.battleships.moves.factories;
 
 import org.junit.Test;
-import org.mockito.Mockito;
 import tomwoz.battleships.api.IActionVisitor;
 
 import java.util.Arrays;
-import java.util.Collections;
 
 import static org.junit.Assert.*;
 import static org.mockito.Mockito.*;

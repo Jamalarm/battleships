@@ -9,11 +9,9 @@ import tomwoz.battleships.ships.Orientation;
 import tomwoz.battleships.ships.Ship;
 
 import java.io.BufferedReader;
-import java.io.Closeable;
 import java.io.IOException;
 import java.io.Reader;
 import java.util.HashMap;
-import java.util.IllegalFormatException;
 import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -27,9 +25,9 @@ import java.util.regex.Pattern;
  */
 public class UnifiedTextBasedGameInputStream implements IActionInputStream, IBoardStateProvider {
 
-    private static Pattern BOARD_SIZE_REGEX = Pattern.compile("^\\s*(\\d+)\\s*$");
-    private static Pattern INITIAL_SHIP_REGEX = Pattern.compile("(\\(\\d+\\,\\s\\d+\\,\\s[NSEW]\\))");
-    private static Pattern SHIP_DELIMITATION_REGEX = Pattern.compile("^\\((\\d+)\\,\\s(\\d+)\\,\\s([NSEW])\\)$");
+    private static final Pattern BOARD_SIZE_REGEX = Pattern.compile("^\\s*(\\d+)\\s*$");
+    private static final Pattern INITIAL_SHIP_REGEX = Pattern.compile("(\\(\\d+\\,\\s\\d+\\,\\s[NSEW]\\))");
+    private static final Pattern SHIP_DELIMITATION_REGEX = Pattern.compile("^\\((\\d+)\\,\\s(\\d+)\\,\\s([NSEW])\\)$");
 
     private final BufferedReader reader;
     private final IRegexActionVisitorFactory actionVisitorFactory;

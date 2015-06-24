@@ -46,7 +46,7 @@ public class CompoundMoveActionRegexFactory implements IRegexActionVisitorFactor
     }
 
     private List<Instruction> parseInstructions(String instructionStr) {
-        final LinkedList<Instruction> parsedInstructions = new LinkedList<Instruction>();
+        final LinkedList<Instruction> parsedInstructions = new LinkedList<>();
 
         for (int i = 0; i < instructionStr.length(); i++) {
             final char c = instructionStr.charAt(i);

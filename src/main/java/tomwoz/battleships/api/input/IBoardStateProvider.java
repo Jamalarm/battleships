@@ -4,7 +4,6 @@ import tomwoz.battleships.board.Coords;
 import tomwoz.battleships.ships.Ship;
 
 import java.util.Map;
-import java.util.Set;
 
 /**
  * A data provider class that is used to instantiate GameController. It should provide a board size and a set of initial

@@ -33,7 +33,7 @@ public final class GameController {
     }
 
     /**
-     * This method will contiuously poll the actionInputStream for actions to perform, and then apply them to the game
+     * This method will continuously poll the actionInputStream for actions to perform, and then apply them to the game
      * state. The method will return once the actionInputStream has returned null, and therefore signalled it has no
      * more action objects to apply
      */

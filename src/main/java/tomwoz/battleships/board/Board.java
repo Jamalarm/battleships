@@ -10,7 +10,7 @@ import java.util.Map;
 
 /**
  * Mutable object representing a grid of N size with a maximum of N^2 ships contained within.
- * This class handles all logic regarding valid actions that may be made, and will throw a variety of exceptiosn if you
+ * This class handles all logic regarding valid actions that may be made, and will throw a variety of exceptions if you
  * attempt to, for example, move a ship off the board, or move a ship onto another ship.
  */
 public class Board {
@@ -56,7 +56,7 @@ public class Board {
         final int x = newCoords.getX();
         final int y = newCoords.getY();
         if (!isWithinBounds(x, y)) {
-            throw new ActionOutOfBoundsException(String.format("Attempted ship move to %s is out of bounds! Maximum size in either direciton is %s.", newCoords, shipGrid.length));
+            throw new ActionOutOfBoundsException(String.format("Attempted ship move to %s is out of bounds! Maximum size in either direction is %s.", newCoords, shipGrid.length));
         } else if (shipGrid[x][y] != null) {
             throw new ShipCollisionException(String.format("Cannot move a ship to %s as there is already a ship there!", newCoords));
         } else {

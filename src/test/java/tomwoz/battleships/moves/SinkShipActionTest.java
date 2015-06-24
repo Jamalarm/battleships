@@ -1,12 +1,10 @@
 package tomwoz.battleships.moves;
 
 import org.junit.Test;
-import org.mockito.Mockito;
 import tomwoz.battleships.board.Board;
 import tomwoz.battleships.board.Coords;
 import tomwoz.battleships.ships.Ship;
 
-import static org.junit.Assert.*;
 import static org.mockito.Mockito.*;
 
 public class SinkShipActionTest {

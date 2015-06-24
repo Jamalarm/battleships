@@ -18,7 +18,7 @@ import static org.junit.Assert.*;
 public class BoardTest {
 
     @Rule
-    public ExpectedException expectedException = ExpectedException.none();
+    public final ExpectedException expectedException = ExpectedException.none();
 
     @Test
     public void testGetShip() throws Exception {
