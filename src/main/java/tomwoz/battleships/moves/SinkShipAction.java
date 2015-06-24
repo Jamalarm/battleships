@@ -3,6 +3,7 @@ package tomwoz.battleships.moves;
 import tomwoz.battleships.api.IBoard;
 import tomwoz.battleships.api.IActionVisitor;
 import tomwoz.battleships.board.Coords;
+import tomwoz.battleships.ships.Ship;
 
 public class SinkShipAction implements IActionVisitor {
 
@@ -14,7 +15,11 @@ public class SinkShipAction implements IActionVisitor {
 
     @Override
     public void executeAction(IBoard board) {
+        final Ship ship = board.getShip(target);
 
+        if (ship != null) {
+            ship.setSunk(true);
+        }
     }
 
     @Override
