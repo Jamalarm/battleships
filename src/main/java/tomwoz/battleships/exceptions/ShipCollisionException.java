@@ -1,4 +1,4 @@
-package tomwoz.battleships.exception;
+package tomwoz.battleships.exceptions;
 
 public class ShipCollisionException extends Exception {
 
