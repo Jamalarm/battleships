@@ -2,7 +2,7 @@ package tomwoz.battleships.moves;
 
 import org.junit.Assert;
 import org.junit.Test;
-import tomwoz.battleships.api.IBoard;
+import tomwoz.battleships.board.Board;
 import tomwoz.battleships.board.Coords;
 import tomwoz.battleships.moves.CompoundMoveAction.Instruction;
 import tomwoz.battleships.ships.Orientation;
@@ -21,7 +21,7 @@ public class CompoundMoveActionTest {
         final Coords startingCoords = new Coords(0, 0);
         final Ship ship = new Ship(Orientation.NORTH);
 
-        final IBoard mockedBoard = mock(IBoard.class);
+        final Board mockedBoard = mock(Board.class);
         when(mockedBoard.getShip(startingCoords)).thenReturn(ship);
 
 
@@ -49,7 +49,7 @@ public class CompoundMoveActionTest {
         final Coords startingCoords = new Coords(1, 1);
         final Ship ship = new Ship(Orientation.NORTH);
 
-        final IBoard mockedBoard = mock(IBoard.class);
+        final Board mockedBoard = mock(Board.class);
         when(mockedBoard.getShip(startingCoords)).thenReturn(ship);
 
 

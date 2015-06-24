@@ -1,7 +1,7 @@
 package tomwoz.battleships.moves;
 
-import tomwoz.battleships.api.IBoard;
 import tomwoz.battleships.api.IActionVisitor;
+import tomwoz.battleships.board.Board;
 import tomwoz.battleships.board.Coords;
 import tomwoz.battleships.exceptions.ActionOutOfBoundsException;
 import tomwoz.battleships.exceptions.NoShipException;
@@ -22,7 +22,7 @@ public class CompoundMoveAction implements IActionVisitor {
     }
 
     @Override
-    public void executeAction(IBoard board) {
+    public void executeAction(Board board) {
 
         try {
             final Ship ship = board.getShip(startingCoords);

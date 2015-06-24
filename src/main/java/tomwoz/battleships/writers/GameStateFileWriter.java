@@ -1,7 +1,7 @@
 package tomwoz.battleships.writers;
 
-import tomwoz.battleships.api.IBoard;
 import tomwoz.battleships.api.output.IGameStateWriter;
+import tomwoz.battleships.board.Board;
 
 import java.io.BufferedWriter;
 import java.io.IOException;
@@ -16,7 +16,7 @@ public class GameStateFileWriter implements IGameStateWriter {
     }
 
     @Override
-    public void writeGameState(IBoard board) {
+    public void writeGameState(Board board) {
         try {
             writer.write(board.toString());
         } catch (IOException e) {

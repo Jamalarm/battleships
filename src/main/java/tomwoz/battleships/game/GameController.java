@@ -1,7 +1,6 @@
 package tomwoz.battleships.game;
 
 import tomwoz.battleships.api.IActionVisitor;
-import tomwoz.battleships.api.IBoard;
 import tomwoz.battleships.api.output.IGameStateWriter;
 import tomwoz.battleships.api.input.IActionInputStream;
 import tomwoz.battleships.api.input.IBoardStateProvider;
@@ -13,7 +12,7 @@ public final class GameController {
 
     private final IActionInputStream actionInputStream;
 
-    private final IBoard board;
+    private final Board board;
 
     public GameController(IActionInputStream actionInputStream, IBoardStateProvider boardStateProvider) {
         this.actionInputStream = actionInputStream;

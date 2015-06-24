@@ -1,6 +1,6 @@
 package tomwoz.battleships.api.output;
 
-import tomwoz.battleships.api.IBoard;
+import tomwoz.battleships.board.Board;
 
 import java.io.Closeable;
 
@@ -16,6 +16,6 @@ public interface IGameStateWriter extends Closeable {
      * board object, such as outputting to file or console.
      * @param board The current board state of the invoking GameController object
      */
-    void writeGameState(IBoard board);
+    void writeGameState(Board board);
 
 }

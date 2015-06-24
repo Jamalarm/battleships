@@ -1,5 +1,7 @@
 package tomwoz.battleships.api;
 
+import tomwoz.battleships.board.Board;
+
 /**
  * An extensible representation of a game action using the Visitor pattern.
  *
@@ -21,6 +23,6 @@ public interface IActionVisitor {
      * board object.
      * @param board The board object representing the current game state
      */
-    void executeAction(IBoard board);
+    void executeAction(Board board);
 
 }

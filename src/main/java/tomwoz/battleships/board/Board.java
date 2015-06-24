@@ -1,6 +1,5 @@
 package tomwoz.battleships.board;
 
-import tomwoz.battleships.api.IBoard;
 import tomwoz.battleships.exceptions.ActionOutOfBoundsException;
 import tomwoz.battleships.exceptions.NoShipException;
 import tomwoz.battleships.exceptions.ShipCollisionException;
@@ -9,7 +8,7 @@ import tomwoz.battleships.ships.Ship;
 import java.util.Arrays;
 import java.util.Map;
 
-public class Board implements IBoard {
+public class Board {
 
     private final Ship[][] shipGrid;
 
@@ -31,7 +30,6 @@ public class Board implements IBoard {
         }
     }
 
-    @Override
     public Ship getShip(Coords coords) throws NoShipException, ActionOutOfBoundsException {
         final int x = coords.getX();
         final int y = coords.getY();
@@ -44,7 +42,6 @@ public class Board implements IBoard {
         }
     }
 
-    @Override
     public void translateShipLocation(Coords oldCoords, Coords newCoords) throws NoShipException, ActionOutOfBoundsException, ShipCollisionException {
         final Ship ship = getShip(oldCoords);
 
