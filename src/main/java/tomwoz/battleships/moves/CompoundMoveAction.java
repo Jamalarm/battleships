@@ -3,6 +3,8 @@ package tomwoz.battleships.moves;
 import tomwoz.battleships.api.IBoard;
 import tomwoz.battleships.api.IActionVisitor;
 import tomwoz.battleships.board.Coords;
+import tomwoz.battleships.exception.ActionOutOfBoundsException;
+import tomwoz.battleships.exception.NoShipException;
 import tomwoz.battleships.ships.Orientation;
 import tomwoz.battleships.ships.Ship;
 
@@ -21,10 +23,35 @@ public class CompoundMoveAction implements IActionVisitor {
     @Override
     public void executeAction(IBoard board) {
 
-        final Ship ship = board.getShip(startingCoords);
+        try {
+            final Ship ship = board.getShip(startingCoords);
 
-        if (ship != null && !ship.isSunk()) {
-            final Orientation orientation = ship.getOrientation();
+            if (ship != null && !ship.isSunk()) {
+                Orientation orientation = ship.getOrientation();
+                Coords newPosition = startingCoords;
+
+                for (Instruction moveInstruction : moveInstructions) {
+
+                    switch (moveInstruction) {
+                        case MOVE_FORWARD:
+                            newPosition = orientation.moveForward(newPosition);
+                            break;
+                        case TURN_LEFT:
+                            orientation = orientation.turnLeft();
+                            break;
+                        case TURN_RIGHT:
+                            orientation = orientation.turnRight();
+                            break;
+                    }
+
+                }
+
+                board.translateShipLocation(startingCoords, newPosition);
+            }
+        } catch (NoShipException e) {
+            e.printStackTrace();
+        } catch (ActionOutOfBoundsException e) {
+            e.printStackTrace();
         }
 
     }
