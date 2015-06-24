@@ -1,19 +1,19 @@
 package tomwoz.battleships.moves;
 
 import tomwoz.battleships.api.IBoard;
-import tomwoz.battleships.api.IMoveVisitor;
+import tomwoz.battleships.api.IActionVisitor;
 import tomwoz.battleships.board.Coords;
 
-public class SinkShipMove implements IMoveVisitor {
+public class SinkShipAction implements IActionVisitor {
 
     private final Coords target;
 
-    public SinkShipMove(Coords target) {
+    public SinkShipAction(Coords target) {
         this.target = target;
     }
 
     @Override
-    public void executeMove(IBoard board) {
+    public void executeAction(IBoard board) {
 
     }
 
@@ -22,7 +22,7 @@ public class SinkShipMove implements IMoveVisitor {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
-        SinkShipMove that = (SinkShipMove) o;
+        SinkShipAction that = (SinkShipAction) o;
 
         return !(target != null ? !target.equals(that.target) : that.target != null);
 

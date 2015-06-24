@@ -4,17 +4,16 @@ import org.junit.Assert;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
-import org.mockito.Mockito;
 import tomwoz.battleships.board.Coords;
-import tomwoz.battleships.moves.CompoundLocomotionMove.Instruction;
+import tomwoz.battleships.moves.CompoundMoveAction.Instruction;
 
 import java.util.LinkedList;
 
-import static tomwoz.battleships.moves.CompoundLocomotionMove.Instruction.MOVE_FORWARD;
-import static tomwoz.battleships.moves.CompoundLocomotionMove.Instruction.TURN_LEFT;
-import static tomwoz.battleships.moves.CompoundLocomotionMove.Instruction.TURN_RIGHT;
+import static tomwoz.battleships.moves.CompoundMoveAction.Instruction.MOVE_FORWARD;
+import static tomwoz.battleships.moves.CompoundMoveAction.Instruction.TURN_LEFT;
+import static tomwoz.battleships.moves.CompoundMoveAction.Instruction.TURN_RIGHT;
 
-public class CompoundLocomotionMoveTest {
+public class CompoundMoveActionTest {
 
     @Rule
     ExpectedException expectedException = ExpectedException.none();
@@ -31,9 +30,9 @@ public class CompoundLocomotionMoveTest {
         expectedInstructions.add(TURN_LEFT);
         expectedInstructions.add(MOVE_FORWARD);
 
-        final CompoundLocomotionMove expectedMove = new CompoundLocomotionMove(coords, expectedInstructions);
+        final CompoundMoveAction expectedMove = new CompoundMoveAction(coords, expectedInstructions);
 
-        final CompoundLocomotionMove generatedMove = new CompoundLocomotionMove(coords, "MRLMRLM");
+        final CompoundMoveAction generatedMove = new CompoundMoveAction(coords, "MRLMRLM");
 
         Assert.assertEquals(expectedMove, generatedMove);
 

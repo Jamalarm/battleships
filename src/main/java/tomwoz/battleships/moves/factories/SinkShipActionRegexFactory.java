@@ -1,15 +1,15 @@
 package tomwoz.battleships.moves.factories;
 
-import tomwoz.battleships.api.IMoveVisitor;
+import tomwoz.battleships.api.IActionVisitor;
 import tomwoz.battleships.board.Coords;
-import tomwoz.battleships.moves.SinkShipMove;
+import tomwoz.battleships.moves.SinkShipAction;
 
 import java.util.HashMap;
 import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class SinkShipRegexFactory implements IRegexMoveVisitorFactory {
+public class SinkShipActionRegexFactory implements IRegexActionVisitorFactory {
 
     private static final Pattern PATTERN = Pattern.compile("^\\((\\d+)\\,\\s(\\d+)\\)\\s*$");
 
@@ -21,14 +21,14 @@ public class SinkShipRegexFactory implements IRegexMoveVisitorFactory {
     }
 
     @Override
-    public IMoveVisitor fromString(String input) {
+    public IActionVisitor fromString(String input) {
 
         final Matcher matcher = getMatcher(input);
 
         if (matcher.matches()) {
             final int x = Integer.parseInt(matcher.group(1));
             final int y = Integer.parseInt(matcher.group(2));
-            return new SinkShipMove(new Coords(x, y));
+            return new SinkShipAction(new Coords(x, y));
         } else {
             return null;
         }

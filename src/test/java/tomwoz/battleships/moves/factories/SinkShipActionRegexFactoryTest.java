@@ -2,15 +2,15 @@ package tomwoz.battleships.moves.factories;
 
 import org.junit.Test;
 import tomwoz.battleships.board.Coords;
-import tomwoz.battleships.moves.SinkShipMove;
+import tomwoz.battleships.moves.SinkShipAction;
 
 import static org.junit.Assert.*;
 
-public class SinkShipRegexFactoryTest {
+public class SinkShipActionRegexFactoryTest {
 
     @Test
     public void testCanBuild() throws Exception {
-        final SinkShipRegexFactory factory = new SinkShipRegexFactory();
+        final SinkShipActionRegexFactory factory = new SinkShipActionRegexFactory();
 
         //Valid cases
         assertTrue(factory.canBuild("(0, 10)    "));
@@ -25,11 +25,11 @@ public class SinkShipRegexFactoryTest {
 
     @Test
     public void testFromString() throws Exception {
-        final SinkShipRegexFactory factory = new SinkShipRegexFactory();
+        final SinkShipActionRegexFactory factory = new SinkShipActionRegexFactory();
 
-        assertEquals(new SinkShipMove(new Coords(0, 0)), factory.fromString("(0, 0)  "));
-        assertEquals(new SinkShipMove(new Coords(100000, 100000)), factory.fromString("(100000, 100000)"));
-        assertEquals(new SinkShipMove(new Coords(934, 0)), factory.fromString("(934, 0)  "));
+        assertEquals(new SinkShipAction(new Coords(0, 0)), factory.fromString("(0, 0)  "));
+        assertEquals(new SinkShipAction(new Coords(100000, 100000)), factory.fromString("(100000, 100000)"));
+        assertEquals(new SinkShipAction(new Coords(934, 0)), factory.fromString("(934, 0)  "));
         assertNull(factory.fromString("dwadwakdakwnd"));
     }
 }

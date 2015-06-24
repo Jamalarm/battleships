@@ -1,25 +1,25 @@
 package tomwoz.battleships.moves;
 
 import tomwoz.battleships.api.IBoard;
-import tomwoz.battleships.api.IMoveVisitor;
+import tomwoz.battleships.api.IActionVisitor;
 import tomwoz.battleships.board.Coords;
 
 import java.util.LinkedList;
 import java.util.List;
 
-public class CompoundLocomotionMove implements IMoveVisitor {
+public class CompoundMoveAction implements IActionVisitor {
 
     private final Coords startingCoords;
-    private final List<Instruction> instructions;
+    private final List<Instruction> moveInstructions;
 
-    public CompoundLocomotionMove(Coords startingCoords, String instructionStr) {
+    public CompoundMoveAction(Coords startingCoords, String instructionStr) {
         this.startingCoords = startingCoords;
-        this.instructions = parseInstructions(instructionStr);
+        this.moveInstructions = parseInstructions(instructionStr);
     }
 
-    public CompoundLocomotionMove(Coords startingCoords, List<Instruction> instructions) {
+    public CompoundMoveAction(Coords startingCoords, List<Instruction> moveInstructions) {
         this.startingCoords = startingCoords;
-        this.instructions = instructions;
+        this.moveInstructions = moveInstructions;
     }
 
     private List<Instruction> parseInstructions(String instructionStr) {
@@ -41,7 +41,7 @@ public class CompoundLocomotionMove implements IMoveVisitor {
     }
 
     @Override
-    public void executeMove(IBoard board) {
+    public void executeAction(IBoard board) {
         //Rememeber to check if the ship is alive
     }
 
@@ -72,18 +72,18 @@ public class CompoundLocomotionMove implements IMoveVisitor {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
-        CompoundLocomotionMove that = (CompoundLocomotionMove) o;
+        CompoundMoveAction that = (CompoundMoveAction) o;
 
         if (startingCoords != null ? !startingCoords.equals(that.startingCoords) : that.startingCoords != null)
             return false;
-        return !(instructions != null ? !instructions.equals(that.instructions) : that.instructions != null);
+        return !(moveInstructions != null ? !moveInstructions.equals(that.moveInstructions) : that.moveInstructions != null);
 
     }
 
     @Override
     public int hashCode() {
         int result = startingCoords != null ? startingCoords.hashCode() : 0;
-        result = 31 * result + (instructions != null ? instructions.hashCode() : 0);
+        result = 31 * result + (moveInstructions != null ? moveInstructions.hashCode() : 0);
         return result;
     }
 }

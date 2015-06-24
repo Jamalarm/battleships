@@ -2,15 +2,15 @@ package tomwoz.battleships.moves.factories;
 
 import org.junit.Test;
 import tomwoz.battleships.board.Coords;
-import tomwoz.battleships.moves.CompoundLocomotionMove;
+import tomwoz.battleships.moves.CompoundMoveAction;
 
 import static org.junit.Assert.*;
 
-public class CompoundLocomotionRegexFactoryTest {
+public class CompoundMoveActionRegexFactoryTest {
 
     @Test
     public void testCanBuild() throws Exception {
-        final CompoundLocomotionRegexFactory factory = new CompoundLocomotionRegexFactory();
+        final CompoundMoveActionRegexFactory factory = new CompoundMoveActionRegexFactory();
 
         //Valid cases
         assertTrue(factory.canBuild("(0, 10) MRLRLRM"));
@@ -27,15 +27,15 @@ public class CompoundLocomotionRegexFactoryTest {
     @Test
     public void testFromString() throws Exception {
 
-        final CompoundLocomotionRegexFactory factory = new CompoundLocomotionRegexFactory();
+        final CompoundMoveActionRegexFactory factory = new CompoundMoveActionRegexFactory();
 
         final Coords coords = new Coords(0, 1);
-        final CompoundLocomotionMove generatedMove1 = new CompoundLocomotionMove(coords, "MRLMRLM");
+        final CompoundMoveAction generatedMove1 = new CompoundMoveAction(coords, "MRLMRLM");
 
         assertEquals(generatedMove1, factory.fromString("(0, 1) MRLMRLM"));
 
         final Coords coords2 = new Coords(10000, 3000);
-        final CompoundLocomotionMove generatedMove2 = new CompoundLocomotionMove(coords2, "MMMMMMMMMMM");
+        final CompoundMoveAction generatedMove2 = new CompoundMoveAction(coords2, "MMMMMMMMMMM");
 
         assertEquals(generatedMove2, factory.fromString("(10000, 3000) MMMMMMMMMMM"));
 

@@ -1,15 +1,15 @@
 package tomwoz.battleships.moves.factories;
 
-import tomwoz.battleships.api.IMoveVisitor;
+import tomwoz.battleships.api.IActionVisitor;
 import tomwoz.battleships.board.Coords;
-import tomwoz.battleships.moves.CompoundLocomotionMove;
+import tomwoz.battleships.moves.CompoundMoveAction;
 
 import java.util.HashMap;
 import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class CompoundLocomotionRegexFactory implements  IRegexMoveVisitorFactory {
+public class CompoundMoveActionRegexFactory implements IRegexActionVisitorFactory {
 
     private static final Pattern PATTERN = Pattern.compile("^\\((\\d+)\\,\\s(\\d+)\\)\\s*([MRL]+)\\s*$");
 
@@ -21,7 +21,7 @@ public class CompoundLocomotionRegexFactory implements  IRegexMoveVisitorFactory
     }
 
     @Override
-    public IMoveVisitor fromString(String input) {
+    public IActionVisitor fromString(String input) {
         final Matcher matcher = getMatcher(input);
 
         if (matcher.matches()) {
@@ -29,7 +29,7 @@ public class CompoundLocomotionRegexFactory implements  IRegexMoveVisitorFactory
             final int y = Integer.parseInt(matcher.group(2));
             final String instructions = matcher.group(3);
             final Coords coords = new Coords(x, y);
-            return new CompoundLocomotionMove(coords, instructions);
+            return new CompoundMoveAction(coords, instructions);
         } else {
             return null;
         }
