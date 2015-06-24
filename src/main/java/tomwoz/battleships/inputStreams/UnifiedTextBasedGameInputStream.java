@@ -13,6 +13,7 @@ import java.io.Closeable;
 import java.io.IOException;
 import java.io.Reader;
 import java.util.HashMap;
+import java.util.IllegalFormatException;
 import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -94,7 +95,20 @@ public class UnifiedTextBasedGameInputStream implements IActionInputStream, IBoa
 
     @Override
     public IActionVisitor readNextAction() {
-        return null;
+        try {
+            final String line = reader.readLine();
+
+            if (line == null) {
+                return null;
+            } else if (!actionVisitorFactory.canBuild(line)) {
+                throw new IllegalArgumentException(String.format("Badly formatted action! Cannot parse to ActionVisitor! (%s)", line));
+            } else {
+                return actionVisitorFactory.fromString(line);
+            }
+
+        } catch (IOException e) {
+            throw new IllegalArgumentException(e);
+        }
     }
 
     @Override

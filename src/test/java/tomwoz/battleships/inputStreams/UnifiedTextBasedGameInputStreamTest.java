@@ -3,8 +3,11 @@ package tomwoz.battleships.inputStreams;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
+import org.mockito.Mockito;
+import tomwoz.battleships.api.input.IActionInputStream;
 import tomwoz.battleships.api.input.IBoardStateProvider;
 import tomwoz.battleships.board.Coords;
+import tomwoz.battleships.moves.factories.IRegexActionVisitorFactory;
 import tomwoz.battleships.ships.Orientation;
 import tomwoz.battleships.ships.Ship;
 
@@ -14,6 +17,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import static org.junit.Assert.*;
+import static org.mockito.Mockito.*;
 
 public class UnifiedTextBasedGameInputStreamTest {
 
@@ -22,7 +26,24 @@ public class UnifiedTextBasedGameInputStreamTest {
 
     @Test
     public void testReadNextAction() throws Exception {
+        final IRegexActionVisitorFactory mockedFactory = mock(IRegexActionVisitorFactory.class);
 
+        when(mockedFactory.canBuild(anyString())).thenReturn(true);
+        when(mockedFactory.fromString(anyString())).thenReturn(null);
+
+        IActionInputStream inputStream = new UnifiedTextBasedGameInputStream(new FileReader("src/test/resources/testStateInputFiles/testState1.txt"), mockedFactory);
+
+        inputStream.readNextAction();
+
+        verify(mockedFactory, times(1)).canBuild("(0, 0) MRMLMM");
+        verify(mockedFactory, times(1)).fromString("(0, 0) MRMLMM");
+
+        inputStream.readNextAction();
+
+        verify(mockedFactory, times(1)).canBuild("(9, 2)");
+        verify(mockedFactory, times(1)).fromString("(9, 2)");
+
+        assertNull(inputStream.readNextAction());
     }
 
     @Test
