@@ -1,7 +1,7 @@
 package tomwoz.battleships.writers;
 
 import tomwoz.battleships.api.IBoard;
-import tomwoz.battleships.api.IGameStateWriter;
+import tomwoz.battleships.api.output.IGameStateWriter;
 
 import java.io.BufferedWriter;
 import java.io.IOException;

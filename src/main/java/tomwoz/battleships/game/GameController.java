@@ -2,7 +2,7 @@ package tomwoz.battleships.game;
 
 import tomwoz.battleships.api.IActionVisitor;
 import tomwoz.battleships.api.IBoard;
-import tomwoz.battleships.api.IGameStateWriter;
+import tomwoz.battleships.api.output.IGameStateWriter;
 import tomwoz.battleships.api.input.IActionInputStream;
 import tomwoz.battleships.api.input.IBoardStateProvider;
 import tomwoz.battleships.board.Board;
