@@ -2,7 +2,9 @@ package tomwoz.battleships.api.input;
 
 import tomwoz.battleships.api.IActionVisitor;
 
-public interface IActionInputStream {
+import java.io.Closeable;
+
+public interface IActionInputStream extends Closeable {
 
     IActionVisitor readNextAction();
 
