@@ -1,5 +1,6 @@
 package tomwoz.battleships.moves;
 
+import org.junit.Assert;
 import org.junit.Test;
 import tomwoz.battleships.api.IBoard;
 import tomwoz.battleships.board.Coords;
@@ -33,12 +34,14 @@ public class CompoundMoveActionTest {
         instructions.add(TURN_LEFT);
         instructions.add(MOVE_FORWARD);
         instructions.add(MOVE_FORWARD);
+        instructions.add(TURN_RIGHT);
 
         final CompoundMoveAction moveAction = new CompoundMoveAction(startingCoords, instructions);
 
         moveAction.executeAction(mockedBoard);
 
         verify(mockedBoard, times(1)).translateShipLocation(startingCoords, new Coords(2, 4));
+        Assert.assertEquals(Orientation.EAST, ship.getOrientation());
     }
 
     @Test
@@ -64,5 +67,6 @@ public class CompoundMoveActionTest {
         moveAction.executeAction(mockedBoard);
 
         verify(mockedBoard, times(1)).translateShipLocation(startingCoords, new Coords(101, 101));
+        Assert.assertEquals(Orientation.EAST, ship.getOrientation());
     }
 }

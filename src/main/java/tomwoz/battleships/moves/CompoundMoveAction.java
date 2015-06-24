@@ -27,7 +27,7 @@ public class CompoundMoveAction implements IActionVisitor {
         try {
             final Ship ship = board.getShip(startingCoords);
 
-            if (ship != null && !ship.isSunk()) {
+            if (!ship.isSunk()) {
                 Orientation orientation = ship.getOrientation();
                 Coords newPosition = startingCoords;
 
@@ -48,6 +48,9 @@ public class CompoundMoveAction implements IActionVisitor {
                 }
 
                 board.translateShipLocation(startingCoords, newPosition);
+                ship.setOrientation(orientation); //Must call this second, as the board checking logic needs to execute first
+            } else {
+                System.out.println("Compound Move Action failed as the ship is already sunk! It can't move!");
             }
         } catch (NoShipException e) {
             System.out.println("Compound Move Action failed as there was no ship at specified Coords!");
