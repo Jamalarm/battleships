@@ -1,11 +1,12 @@
 package tomwoz.battleships.api;
 
 import tomwoz.battleships.board.Coords;
+import tomwoz.battleships.ships.Ship;
 
 public interface IBoard {
 
-    IShip getShip(Coords coords);
+    Ship getShip(Coords coords) throws IndexOutOfBoundsException;
 
-    void setShipLocation(Coords coords);
+    void translateShipLocation(Coords oldCoords, Coords newCoords) throws IndexOutOfBoundsException, IllegalArgumentException;
 
 }
