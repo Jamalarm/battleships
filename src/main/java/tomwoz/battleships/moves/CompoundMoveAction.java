@@ -5,6 +5,7 @@ import tomwoz.battleships.api.IActionVisitor;
 import tomwoz.battleships.board.Coords;
 import tomwoz.battleships.exception.ActionOutOfBoundsException;
 import tomwoz.battleships.exception.NoShipException;
+import tomwoz.battleships.exception.ShipCollisionException;
 import tomwoz.battleships.ships.Orientation;
 import tomwoz.battleships.ships.Ship;
 
@@ -49,9 +50,11 @@ public class CompoundMoveAction implements IActionVisitor {
                 board.translateShipLocation(startingCoords, newPosition);
             }
         } catch (NoShipException e) {
-            e.printStackTrace();
+            System.out.println("Compound Move Action failed as there was no ship at specified Coords!");
         } catch (ActionOutOfBoundsException e) {
-            e.printStackTrace();
+            System.out.println("Compound Move Action failed: " + e.getMessage());
+        } catch (ShipCollisionException e) {
+            System.out.println("Compound Move Action failed due to a ship already occupying the final move location! ");
         }
 
     }

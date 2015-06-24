@@ -22,9 +22,9 @@ public class SinkShipAction implements IActionVisitor {
             ship.setSunk(true);
 
         } catch (NoShipException e) {
-            e.printStackTrace();
+            System.out.println("Ship was not sunk, there were no ships at the coordinates!");
         } catch (ActionOutOfBoundsException e) {
-            e.printStackTrace();
+            System.out.println("Sink ship action failed " + e.getMessage());
         }
     }
 
