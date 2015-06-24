@@ -6,7 +6,7 @@ import tomwoz.battleships.exceptions.NoShipException;
 import tomwoz.battleships.exceptions.ShipCollisionException;
 import tomwoz.battleships.ships.Ship;
 
-public interface IBoard {
+public interface IBoard { //TODO do I need this interface?
 
     Ship getShip(Coords coords) throws NoShipException, ActionOutOfBoundsException;
 

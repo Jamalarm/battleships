@@ -6,6 +6,7 @@ import tomwoz.battleships.exceptions.NoShipException;
 import tomwoz.battleships.exceptions.ShipCollisionException;
 import tomwoz.battleships.ships.Ship;
 
+import java.util.Arrays;
 import java.util.Map;
 
 public class Board implements IBoard {
@@ -62,5 +63,21 @@ public class Board implements IBoard {
     private boolean isWithinBounds(int x, int y) {
         return x >= 0 && x < shipGrid.length &&
                 y >= 0 && y < shipGrid.length;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Board board = (Board) o;
+
+        return Arrays.deepEquals(shipGrid, board.shipGrid);
+
+    }
+
+    @Override
+    public int hashCode() {
+        return shipGrid != null ? Arrays.deepHashCode(shipGrid) : 0;
     }
 }
