@@ -5,9 +5,13 @@ import tomwoz.battleships.board.Coords;
 import tomwoz.battleships.moves.CompoundMoveAction;
 
 import java.util.HashMap;
+import java.util.LinkedList;
+import java.util.List;
 import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+
+import static tomwoz.battleships.moves.CompoundMoveAction.*;
 
 public class CompoundMoveActionRegexFactory implements IRegexActionVisitorFactory {
 
@@ -27,7 +31,8 @@ public class CompoundMoveActionRegexFactory implements IRegexActionVisitorFactor
         if (matcher.matches()) {
             final int x = Integer.parseInt(matcher.group(1));
             final int y = Integer.parseInt(matcher.group(2));
-            final String instructions = matcher.group(3);
+
+            final List<Instruction> instructions = parseInstructions(matcher.group(3));
             final Coords coords = new Coords(x, y);
             return new CompoundMoveAction(coords, instructions);
         } else {
@@ -35,6 +40,24 @@ public class CompoundMoveActionRegexFactory implements IRegexActionVisitorFactor
         }
 
 
+    }
+
+    private List<Instruction> parseInstructions(String instructionStr) {
+        //TODO Move this logic into the Factory
+        final LinkedList<Instruction> parsedInstructions = new LinkedList<Instruction>();
+
+        for (int i = 0; i < instructionStr.length(); i++) {
+            final char c = instructionStr.charAt(i);
+            final Instruction instruction = Instruction.fromShortCode(c);
+
+            if (instruction == null) {
+                throw new IllegalArgumentException(String.format("Illegal character \'%s\' detected in input string!", c));
+            } else {
+                parsedInstructions.add(instruction);
+            }
+        }
+
+        return parsedInstructions;
     }
 
     private Matcher getMatcher(String input) {

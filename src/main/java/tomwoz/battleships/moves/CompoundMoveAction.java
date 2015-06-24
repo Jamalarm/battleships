@@ -4,7 +4,6 @@ import tomwoz.battleships.api.IBoard;
 import tomwoz.battleships.api.IActionVisitor;
 import tomwoz.battleships.board.Coords;
 
-import java.util.LinkedList;
 import java.util.List;
 
 public class CompoundMoveAction implements IActionVisitor {
@@ -12,32 +11,9 @@ public class CompoundMoveAction implements IActionVisitor {
     private final Coords startingCoords;
     private final List<Instruction> moveInstructions;
 
-    public CompoundMoveAction(Coords startingCoords, String instructionStr) {
-        this.startingCoords = startingCoords;
-        this.moveInstructions = parseInstructions(instructionStr);
-    }
-
     public CompoundMoveAction(Coords startingCoords, List<Instruction> moveInstructions) {
         this.startingCoords = startingCoords;
         this.moveInstructions = moveInstructions;
-    }
-
-    private List<Instruction> parseInstructions(String instructionStr) {
-
-        final LinkedList<Instruction> parsedInstructions = new LinkedList<Instruction>();
-
-        for (int i = 0; i < instructionStr.length(); i++) {
-            final char c = instructionStr.charAt(i);
-            final Instruction instruction = Instruction.fromShortCode(c);
-
-            if (instruction == null) {
-                throw new IllegalArgumentException(String.format("Illegal character \'%s\' detected in input string!", c));
-            } else {
-                parsedInstructions.add(instruction);
-            }
-        }
-
-        return parsedInstructions;
     }
 
     @Override
@@ -45,7 +21,7 @@ public class CompoundMoveAction implements IActionVisitor {
         //Rememeber to check if the ship is alive
     }
 
-    enum Instruction {
+    public enum Instruction {
         MOVE_FORWARD('M'),
         TURN_RIGHT('R'),
         TURN_LEFT('L');
@@ -56,7 +32,7 @@ public class CompoundMoveAction implements IActionVisitor {
             this.shortCode = shortCode;
         }
 
-        static Instruction fromShortCode(char shortCode) {
+        public static Instruction fromShortCode(char shortCode) {
             for (Instruction instruction : values()) {
                 if (instruction.shortCode == shortCode) {
                     return instruction;

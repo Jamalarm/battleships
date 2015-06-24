@@ -4,7 +4,12 @@ import org.junit.Test;
 import tomwoz.battleships.board.Coords;
 import tomwoz.battleships.moves.CompoundMoveAction;
 
+import java.util.LinkedList;
+
 import static org.junit.Assert.*;
+import static tomwoz.battleships.moves.CompoundMoveAction.Instruction.MOVE_FORWARD;
+import static tomwoz.battleships.moves.CompoundMoveAction.Instruction.TURN_LEFT;
+import static tomwoz.battleships.moves.CompoundMoveAction.Instruction.TURN_RIGHT;
 
 public class CompoundMoveActionRegexFactoryTest {
 
@@ -26,19 +31,35 @@ public class CompoundMoveActionRegexFactoryTest {
 
     @Test
     public void testFromString() throws Exception {
-
         final CompoundMoveActionRegexFactory factory = new CompoundMoveActionRegexFactory();
 
-        final Coords coords = new Coords(0, 1);
-        final CompoundMoveAction generatedMove1 = new CompoundMoveAction(coords, "MRLMRLM");
+         Coords coords = new Coords(0, 0);
+         LinkedList<CompoundMoveAction.Instruction> expectedInstructions = new LinkedList<>();
+        expectedInstructions.add(MOVE_FORWARD);
+        expectedInstructions.add(TURN_RIGHT);
+        expectedInstructions.add(TURN_LEFT);
+        expectedInstructions.add(MOVE_FORWARD);
+        expectedInstructions.add(TURN_RIGHT);
+        expectedInstructions.add(TURN_LEFT);
+        expectedInstructions.add(MOVE_FORWARD);
 
-        assertEquals(generatedMove1, factory.fromString("(0, 1) MRLMRLM"));
+        CompoundMoveAction expectedMove = new CompoundMoveAction(coords, expectedInstructions);
 
-        final Coords coords2 = new Coords(10000, 3000);
-        final CompoundMoveAction generatedMove2 = new CompoundMoveAction(coords2, "MMMMMMMMMMM");
+        assertEquals(expectedMove, factory.fromString("(0, 0) MRLMRLM"));
 
-        assertEquals(generatedMove2, factory.fromString("(10000, 3000) MMMMMMMMMMM"));
+        coords = new Coords(999999999, 999999999);
+        expectedInstructions = new LinkedList<>();
+        expectedInstructions.add(MOVE_FORWARD);
+        expectedInstructions.add(MOVE_FORWARD);
+        expectedInstructions.add(TURN_LEFT);
+        expectedInstructions.add(TURN_LEFT);
+        expectedInstructions.add(TURN_RIGHT);
+        expectedInstructions.add(TURN_RIGHT);
 
-        assertNull(factory.fromString("sfdemesodfmawld"));
+        expectedMove = new CompoundMoveAction(coords, expectedInstructions);
+
+        assertEquals(expectedMove, factory.fromString("(999999999, 999999999) MMLLRR"));
+
+
     }
 }
