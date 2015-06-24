@@ -2,7 +2,7 @@ Hi guys,
 
 Thanks for asking me to do the test. It was actually pretty fun :)
 
-I've tried to make the implemntation as extensible as possible. So, you can easily:
+I've tried to make the implementation as extensible as possible. So, you can easily:
 
 - Add new types of actions by Implementing IActionVisitor
 - Add new types of inputs and outputs by implementing and wiring in IActionInputStream, IBoardStateProvider and IGameStateWriter
