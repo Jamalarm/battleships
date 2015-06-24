@@ -24,6 +24,8 @@ public class Board implements IBoard {
             final int y = coords.getY();
             if (isWithinBounds(x, y)) {
                 shipGrid[x][y] = ship.getValue();
+            } else {
+                throw new IllegalArgumentException(String.format("Attempted to build a board with a ship of out bounds! %s", coords));
             }
         }
     }
