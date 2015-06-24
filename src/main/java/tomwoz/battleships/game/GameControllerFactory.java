@@ -30,6 +30,7 @@ public class GameControllerFactory {
         Reader fileReader = new FileReader(filePath);
 
         List<IRegexActionVisitorFactory> delegates = new LinkedList<>();
+        //Currently, if you implemented a new IActionVisitor and Factory, you would need to add it here
         delegates.add(new CompoundMoveActionRegexFactory());
         delegates.add(new SinkShipActionRegexFactory());
 
