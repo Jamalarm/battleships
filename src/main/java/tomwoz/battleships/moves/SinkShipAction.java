@@ -23,6 +23,7 @@ public class SinkShipAction implements IActionVisitor {
         try {
             final Ship ship = board.getShip(target);
             ship.setSunk(true);
+            System.out.println("SHIP SUNK!");
 
         } catch (NoShipException e) {
             System.out.println("Ship was not sunk, there were no ships at the coordinates!");
@@ -45,5 +46,10 @@ public class SinkShipAction implements IActionVisitor {
     @Override
     public int hashCode() {
         return target != null ? target.hashCode() : 0;
+    }
+
+    @Override
+    public String toString() {
+        return "SINK SHIP AT " + target;
     }
 }

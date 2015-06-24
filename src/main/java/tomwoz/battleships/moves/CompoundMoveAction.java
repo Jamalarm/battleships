@@ -62,6 +62,7 @@ public class CompoundMoveAction implements IActionVisitor {
                 board.translateShipLocation(startingCoords, newPosition);
                 //Must call this second, as the board checking logic needs to execute first
                 ship.setOrientation(orientation);
+                System.out.println("SUCCESS!");
             } else {
                 System.out.println("Compound Move Action failed as the ship is already sunk! It can't move!");
             }
@@ -115,5 +116,19 @@ public class CompoundMoveAction implements IActionVisitor {
         int result = startingCoords != null ? startingCoords.hashCode() : 0;
         result = 31 * result + (moveInstructions != null ? moveInstructions.hashCode() : 0);
         return result;
+    }
+
+    @Override
+    public String toString() {
+        final StringBuilder builder = new StringBuilder();
+        builder.append("MOVE SHIP AT ")
+                .append(startingCoords)
+                .append(" BY ");
+
+        for (Instruction moveInstruction : moveInstructions) {
+            builder.append(moveInstruction.shortCode);
+        }
+
+        return builder.toString();
     }
 }

@@ -42,6 +42,7 @@ public final class GameController {
             IActionVisitor nextAction = actionInputStream.readNextAction();
 
             while (nextAction != null) {
+                System.out.println("Executing Action: " + nextAction);
                 nextAction.executeAction(board);
                 nextAction = actionInputStream.readNextAction();
             }
