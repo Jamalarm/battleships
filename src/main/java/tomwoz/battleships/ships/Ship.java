@@ -29,4 +29,23 @@ public class Ship {
     public void setSunk(boolean sunk) {
         this.sunk = sunk;
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Ship ship = (Ship) o;
+
+        if (sunk != ship.sunk) return false;
+        return orientation == ship.orientation;
+
+    }
+
+    @Override
+    public int hashCode() {
+        int result = orientation != null ? orientation.hashCode() : 0;
+        result = 31 * result + (sunk ? 1 : 0);
+        return result;
+    }
 }

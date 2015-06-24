@@ -62,7 +62,7 @@ public class UnifiedTextBasedGameInputStream implements IActionInputStream, IBoa
             final String line = this.reader.readLine();
             final Matcher matcher = INITIAL_SHIP_REGEX.matcher(line);
 
-            if (matcher.matches()) {
+            if (matcher.find()) {
                 matcher.reset();
 
                 while (matcher.find()) {
@@ -99,12 +99,12 @@ public class UnifiedTextBasedGameInputStream implements IActionInputStream, IBoa
 
     @Override
     public int getBoardSize() {
-        return 0;
+        return this.cachedBoardSize;
     }
 
     @Override
     public Map<Coords, Ship> getShips() {
-        return null;
+        return this.cachedInitialShips;
     }
 
     @Override
